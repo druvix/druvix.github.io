@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Resumake</title>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/x-icon" href="assets/Resumake_logo_white.png">
+        <link rel = "stylesheet" href = "jquery-ui.css"/>
+        <script src = "jquery-3.6.3.js"></script>
+        <script src = "jquery-ui.js"></script>
+
+        <script>
+            $(document).ready(function() {
+              // Create a function to handle the form submission
+              function submitForm() {
+                // Retrieve input values
+                var fname = $("#fname").val();
+                var lname = $("#lname").val();
+                var email = $("#email").val();
+                var address = $("#address").val();
+                var mobile = $("#mobile").val();
+                var skills = $("#skills").val();
+                var objective = $("#objective").val();
+                var primarySchool = $("#primary_school").val();
+                var primaryAddress = $("#primary_address").val();
+                var primaryYear = $("#primary_year").val();
+                var secondarySchool = $("#secondary_school").val();
+                var secondaryAddress = $("#secondary_address").val();
+                var secondaryYear = $("#secondary_year").val();
+                var tertiarySchool = $("#tertiary_school").val();
+                var tertiaryAddress = $("#tertiary_address").val();
+                var tertiaryYear = $("#tertiary_year").val();
+                var tertiaryDegree = $("#tertiary_degree").val();
+                var graduateSchool = $("#graduate_school").val();
+                var graduateAddress = $("#graduate_address").val();
+                var graduateYear = $("#graduate_year").val();
+                var graduateDegree = $("#graduate_degree").val();
+                var experience = $("#experience").val();
+                var achievements = $("#achievements").val();
+          
+                // Create an object to store resume data
+                var resume = {
+                  name: fname + " " + lname,
+                  email: email,
+                  address: address,
+                  mobile: mobile,
+                  skills: skills,
+                  objective: objective,
+                  primarySchool: primarySchool,
+                  primaryAddress: primaryAddress,
+                  primaryYear: primaryYear,
+                  secondarySchool: secondarySchool,
+                  secondaryAddress: secondaryAddress,
+                  secondaryYear: secondaryYear,
+                  tertiarySchool: tertiarySchool,
+                  tertiaryAddress: tertiaryAddress,
+                  tertiaryYear: tertiaryYear,
+                  tertiaryDegree: tertiaryDegree,
+                  graduateSchool: graduateSchool,
+                  graduateAddress: graduateAddress,
+                  graduateYear: graduateYear,
+                  graduateDegree: graduateDegree,
+                  experience: experience,
+                  achievements: achievements
+                };
+          
+                // Store resume data in local storage as JSON
+                localStorage.setItem("resumeData", JSON.stringify(resume));
+          
+                // Redirect to the review page
+                window.location.href = "review.html";
+              }
+          
+              $("#submit-button").on("click", submitForm);
+            });
+          </script>
+          
+          
+        
+    </head>
+    <body style="background-image: url(assets/interv2.jpg); background-repeat: no-repeat; background-size: cover; background-attachment: fixed;  margin: unset">
+        <div class="header_container" style="width: 99.1vw; height: 10vh; background-color: white; font-family: sans-serif; display: flex; flex-wrap: wrap">
+            <div id="logo" style="width: fit-content; height: fit-content; margin-left: 12vw; margin-top: 0.8vh">
+                <img src="assets/Resumake_logo_black.png" style="width: 51.48px; height: 62.44px">
+            </div>
+            <div id="tagline" style="width: fit-content; height: fit-content">
+                <h3 style="margin-left: 4.6vw; margin-top: unset; margin-bottom: unset; padding-top: 2vh">Resumake</h3>
+                <p style="margin-left: 1vw; margin-top: unset">Make resume now. Work tomorrow.</p>
+            </div>
+        </div>
+        <div id="container" style="width: 80vw; background-color: white; margin-left: 10vw; margin-top: 5vh; margin-right: 10vw; font-family: sans-serif">
+            <h2 style="padding-left: 2vw; padding-top: 4vh;">Please fill out the form below</h2>
+     
+                <form style = "float: right;">
+                    <label>Upload your Photo! </label><input type="file" id="imageInput" accept="image/*" onchange="uploadImage(event)">
+                  </form>
+                  
+                  <script>
+                    function uploadImage(event) {
+                      const file = event.target.files[0];
+                      const reader = new FileReader();
+                  
+                      reader.onload = function (e) {
+                        const imageData = e.target.result;
+                        localStorage.setItem('imageData', imageData);
+                        // window.location.href = 'review.html';
+                      };
+                  
+                      reader.readAsDataURL(file);
+                    }
+                  </script>
+            
+            <div class="row">
+                <div class="name_row" style="display: flex; flex-wrap: wrap">
+                    <div id="fname_column" style="width: 30vw; margin-left: 5vw; margin-right: unset; margin-top: 3vh">
+                        <label for="fname">First Name</label><br>
+                        <input type="text" id="fname" name="fname" placeholder="e.g. Juan" style="width: 30vw; height: 3vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                    <div id="lname_column" style="width: 30vw; margin-left: 5vw; margin-right: unset; margin-top: 3vh">
+                        <label for="lname">Last Name</label><br>
+                        <input type="text" id="lname" name="lname" placeholder="e.g. Dela Cruz" style="width: 30vw; height: 3vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                </div>
+
+                <div class="address_row" style="display: flex; flex-wrap: wrap">
+                    <div id="address_column" style="width: 50vw; margin-left: 5vw; margin-right: unset; margin-top: 3vh">
+                        <label for="address">Address</label><br>
+                        <input type="text" id="address" name="address" placeholder="e.g. Fernandez Drive, San Jose Cawa-Cawa, Zamboanga City" style="width: 50vw; height: 3vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                </div>
+
+                <div class="contact_row" style="display: flex; flex-wrap: wrap">
+                    <div id="mobile_column" style="width: 30vw; margin-left: 5vw; margin-right: unset; margin-top: 3vh">
+                        <label for="mobile">Mobile Number</label><br>
+                        <input type="text" id="mobile" name="mobile" placeholder="e.g. 09123456789" style="width: 30vw; height: 3vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                    <div id="email_column" style="width: 30vw; margin-left: 5vw; margin-right: unset; margin-top: 3vh">
+                        <label for="email">Email Address</label><br>
+                        <input type="text" id="email" name="email" placeholder="e.g. email@gmail.com" style="width: 30vw; height: 3vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                </div>
+
+                <div class="skills_row" style="display: flex; flex-wrap: wrap">
+                    <div id="skills_column" style="width: 65vw; margin-left: 5vw; margin-right: unset; margin-top: 3vh">
+                        <label for="skills">Skills</label><br>
+                        <input type="text" id="skills" name="skills" placeholder="e.g. Technologically Literate, Problem Solving, Good Communication Skills, Leadership" style="width: 65vw; height: 3vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                </div>
+
+                <div class="objective_row" style="display: flex; flex-wrap: wrap">
+                    <div id="objective_column" style="width: 65vw; margin-left: 5vw; margin-right: unset; margin-top: 3vh">
+                        <label for="objective">Job Objective</label><br>
+                        <input type="text" id="objective" name="objective" placeholder="e.g. To be able to work as a full-time Software Engineer, in a prominent company, Tyler Technologies Inc, thus providing excellence in computers and technologies." style="width: 65vw; height: 10vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                </div>
+
+                <h3 style="padding-left: 5vw; padding-top: 5vh; margin-bottom: unset">Educational Attainment</h3>
+
+                <h4 style="padding-left: 5vw; padding-top: 3vh; margin-top: unset; margin-bottom: unset">Primary</h4>
+                <div class="primary_row" style="display: flex; flex-wrap: wrap">
+                    <div id="school_column" style="width: 30vw; margin-left: 5vw; margin-right: unset; margin-top: 1vh">
+                        <label for="primary_school">Name of School</label><br>
+                        <input type="text" id="primary_school" name="primary_school" placeholder="e.g. Sibuco Central School" style="width: 30vw; height: 3vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                    <div id="primary_address_column" style="width: 30vw; margin-left: 5vw; margin-right: unset; margin-top: 1vh">
+                        <label for="primary_address">Address</label><br>
+                        <input type="text" id="primary_address" name="primary_address" placeholder="e.g. Poblacion, Sibuco, Zamboanga del Norte" style="width: 30vw; height: 3vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                    <div id="primary_year_column" style="width: 30vw; margin-left: 25vw; margin-right: unset; margin-top: 1vh">
+                        <label for="primary_year">Year Graduated</label><br>
+                        <input type="text" id="primary_year" name="primary_year" placeholder="e.g. 2015" style="width: 30vw; height: 3vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                </div>
+
+                <h4 style="padding-left: 5vw; padding-top: 3vh; margin-top: unset; margin-bottom: unset">Secondary</h4>
+                <div class="secondary_row" style="display: flex; flex-wrap: wrap">
+                    <div id="school_column" style="width: 30vw; margin-left: 5vw; margin-right: unset; margin-top: 1vh">
+                        <label for="secondary_school">Name of School</label><br>
+                        <input type="text" id="secondary_school" name="secondary_school" placeholder="e.g. Claret School of Zamboanga City" style="width: 30vw; height: 3vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                    <div id="secondary_address_column" style="width: 30vw; margin-left: 5vw; margin-right: unset; margin-top: 1vh">
+                        <label for="secondary_address">Address</label><br>
+                        <input type="text" id="secondary_address" name="secondary_address" placeholder="e.g. Ruste Drive, San Jose Road, Zamboanga City" style="width: 30vw; height: 3vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                    <div id="secondary_year_column" style="width: 30vw; margin-left: 25vw; margin-right: unset; margin-top: 1vh">
+                        <label for="secondary_year">Year Graduated</label><br>
+                        <input type="text" id="secondary_year" name="secondary_year" placeholder="e.g. 2021" style="width: 30vw; height: 3vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                </div>
+
+                <h4 style="padding-left: 5vw; padding-top: 3vh; margin-top: unset; margin-bottom: unset">Tertiary</h4>
+                <div class="tertiary_row" style="display: flex; flex-wrap: wrap">
+                    <div id="school_column" style="width: 30vw; margin-left: 5vw; margin-right: unset; margin-top: 1vh">
+                        <label for="tertiary_school">Name of School</label><br>
+                        <input type="text" id="tertiary_school" name="tertiary_school" placeholder="e.g. Western Mindanao State University" style="width: 30vw; height: 3vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                    <div id="tertiary_address_column" style="width: 30vw; margin-left: 5vw; margin-right: unset; margin-top: 1vh">
+                        <label for="tertiary_address">Address</label><br>
+                        <input type="text" id="tertiary_address" name="tertiary_address" placeholder="e.g. Normal Road, Baliwasan, Zamboanga City" style="width: 30vw; height: 3vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                    <div id="tertiary_year_column" style="width: 30vw; margin-left: 5vw; margin-right: unset; margin-top: 1vh">
+                        <label for="tertiary_year">Year Graduated</label><br>
+                        <input type="text" id="tertiary_year" name="tertiary_year" placeholder="e.g. 2025" style="width: 30vw; height: 3vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                    <div id="tertiary_degree_column" style="width: 30vw; margin-left: 5vw; margin-right: unset; margin-top: 1vh">
+                        <label for="tertiary_degree">Degree Attained</label><br>
+                        <input type="text" id="tertiary_degree" name="tertiary_degree" placeholder="e.g. Bachelor of Science in Computer Engineering" style="width: 30vw; height: 3vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                </div>
+
+                <h4 style="padding-left: 5vw; padding-top: 3vh; margin-top: unset; margin-bottom: unset">Post-Graduate</h4>
+                <div class="graduate_row" style="display: flex; flex-wrap: wrap">
+                    <div id="school_column" style="width: 30vw; margin-left: 5vw; margin-right: unset; margin-top: 1vh">
+                        <label for="graduate_school">Name of School</label><br>
+                        <input type="text" id="graduate_school" name="graduate_school" placeholder="e.g. Mapúa University" style="width: 30vw; height: 3vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                    <div id="graduate_address_column" style="width: 30vw; margin-left: 5vw; margin-right: unset; margin-top: 1vh">
+                        <label for="graduate_address">Address</label><br>
+                        <input type="text" id="graduate_address" name="graduate_address" placeholder="e.g. 658 Muralla Street, Intramuros, Manila" style="width: 30vw; height: 3vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                    <div id="graduate_year_column" style="width: 30vw; margin-left: 5vw; margin-right: unset; margin-top: 1vh">
+                        <label for="graduate_year">Year Graduated</label><br>
+                        <input type="text" id="graduate_year" name="graduate_year" placeholder="e.g. 2027" style="width: 30vw; height: 3vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                    <div id="graduate_degree_column" style="width: 30vw; margin-left: 5vw; margin-right: unset; margin-top: 1vh">
+                        <label for="graduate_degree">Degree Attained</label><br>
+                        <input type="text" id="graduate_degree" name="graduate_degree" placeholder="e.g. Master of Science in Computer Engineering" style="width: 30vw; height: 3vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                </div>
+
+                <div class="experience_row" style="display: flex; flex-wrap: wrap">
+                    <div id="experience_column" style="width: 65vw; margin-left: 5vw; margin-right: unset; margin-top: 5vh">
+                        <label for="experience">Work Experiences</label><br>
+                        <input type="text" id="experience" name="experience" placeholder="e.g. I have previously worked as an Entry-Level Programmer at Convilguous, OPC for 4 years; an assistant Game Developer at Funbox Pte Ltd for 5 years; and I am currently working as a Mid-Level Software Developer at Evelan GmbH." style="width: 65vw; height: 10vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                </div>
+
+                <div class="achievements_row" style="display: flex; flex-wrap: wrap">
+                    <div id="achievements_column" style="width: 65vw; margin-left: 5vw; margin-right: unset; margin-top: 3vh">
+                        <label for="achievements">Achievements and Special Activities</label><br>
+                        <input type="text" id="achievements" name="achievements" placeholder="e.g. With Honors in Junior High School; With Honors in Senior High School; Cum Laude in College." style="width: 65vw; height: 10vh; margin-top: 1vh; padding-left: 1vw">
+                    </div>
+                </div>
+                
+                <div id="submit" style="width: 65vw; background-color:white; margin-left: 5vw; margin-right: unset; margin-top: 3vh">
+                    <center><input type="button" id="submit-button" value="Submit" style="margin-top: 2vh; margin-bottom: 5vh; width: 10vw; height: 5vh; background-color: cornflowerblue; border-color: cornflowerblue"></center>
+                </div>
+            </div>
+            <div id="empty" style="width: 65vw; margin-left: 5vw; margin-right: unset; margin-top: 10vh"></div>
+        </div>
+        <div class="footer_container" style="width: 99.1vw; height: 12vh; background-color: cornflowerblue; font-family: sans-serif; display: flex; flex-wrap: wrap">
+            <div id="logo" style="width: fit-content; height: fit-content; margin-left: 12vw; margin-top: 3.4vh">
+                <img src="assets/Resumake_logo_black.png" style="width: 51.48px; height: 62.44px">
+            </div>
+            <div id="tagline" style="width: fit-content; height: fit-content">
+                <h3 style="margin-left: 4.6vw; margin-top: unset; margin-bottom: unset; padding-top: 4.6vh">Resumake</h3>
+                <p style="margin-left: 1vw; margin-top: unset">Make resume now. Work tomorrow.</p>
+            </div>
+            <div id="copyright" style="width: fit-content; height: fit-content; margin-left: 50vw">
+                <p style="margin-top: 5vh; margin-bottom: unset; color: white">© 2023.</p>
+                <p style="margin-top: unset; color: white">All rights reserved.</p>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Resume Review</title>
+
+  <script src = "jquery-3.6.3.js"></script>
+
+  <script src="jspdf.js"></script>
+  <script src = "pdf.js"></script>
+  <script src = "printThis.js"></script>
+  <script src="html2canvas.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const imageData = localStorage.getItem('imageData');
+      if (imageData) {
+        const img = document.createElement('img');
+        img.src = imageData;
+        img.style.width = '100%';
+        img.style.height = '100%';
+        document.getElementById('photo').appendChild(img);
+
+      }
+    });
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+
+
+    h1, h2, h3 {
+      color: #333;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .section-content {
+      margin-left: 20px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .contact-info-item strong {
+      min-width: 120px;
+    }
+
+    .skills,
+    .objective,
+    .experience,
+    .achievements {
+      margin-bottom: 20px;
+    }
+
+    .skills p,
+    .objective p,
+    .experience p,
+    .achievements p {
+      margin: 0;
+    }
+
+    /* Additional styling for a better-looking resume */
+    #content {
+      background-color: #ffffff;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px;
+      box-shadow: 0 2px 4px rgba(128, 45, 45, 0.1);
+    }
+
+    #pdf_btn {
+      display: block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+<body style="background-image: url(assets/interv2.jpg); background-repeat: no-repeat; background-size: cover; background-attachment: fixed;  margin: unset">
+  <div class="header_container" style="width: 99.1vw; height: 10vh; background-color: white; font-family: sans-serif; display: flex; flex-wrap: wrap">
+    <div id="logo" style="width: fit-content; height: fit-content; margin-left: 12vw; margin-top: 0.8vh">
+        <img src="assets/Resumake_logo_black.png" style="width: 51.48px; height: 62.44px">
+    </div>
+    <div id="tagline" style="width: fit-content; height: fit-content">
+        <h3 style="margin-left: 4.6vw; margin-top: unset; margin-bottom: unset; padding-top: 2vh">Resumake</h3>
+        <p style="margin-left: 1vw; margin-top: unset">Make resume now. Work tomorrow.</p>
+    </div>
+</div><br>
+  <script>
+    $(document).ready(function() {
+      // Retrieve resume data from local storage
+      var resumeData = localStorage.getItem("resumeData");
+      if (resumeData) {
+        var resume = JSON.parse(resumeData);
+
+        // Display resume data in HTML
+
+        document.getElementById("name").innerHTML = resume.name;
+        document.getElementById("email").innerHTML = resume.email;
+        document.getElementById("address").innerHTML = resume.address;
+        document.getElementById("mobile").innerHTML = resume.mobile;
+        document.getElementById("skills").innerHTML = resume.skills;
+        document.getElementById("objective").innerHTML = resume.objective;
+        document.getElementById("primary_school").innerHTML = resume.primarySchool;
+        document.getElementById("primary_address").innerHTML = resume.primaryAddress;
+        document.getElementById("primary_year").innerHTML = resume.primaryYear;
+        document.getElementById("secondary_school").innerHTML = resume.secondarySchool;
+        document.getElementById("secondary_address").innerHTML = resume.secondaryAddress;
+        document.getElementById("secondary_year").innerHTML = resume.secondaryYear;
+        document.getElementById("tertiary_school").innerHTML = resume.tertiarySchool;
+        document.getElementById("tertiary_address").innerHTML = resume.tertiaryAddress;
+        document.getElementById("tertiary_year").innerHTML = resume.tertiaryYear;
+        document.getElementById("tertiary_degree").innerHTML = resume.tertiaryDegree;
+        document.getElementById("graduate_school").innerHTML = resume.graduateSchool;
+        document.getElementById("graduate_address").innerHTML = resume.graduateAddress;
+        document.getElementById("graduate_year").innerHTML = resume.graduateYear;
+        document.getElementById("graduate_degree").innerHTML = resume.graduateDegree;
+        document.getElementById("experience").innerHTML = resume.experience;
+        document.getElementById("achievements").innerHTML = resume.achievements;
+      }
+    });
+  </script>
+
+  <div id="content">
+   <center><div id = "photo" style = "
+    width: 200px;
+    height: 200px;
+    object-fit: scale-down;
+     "></div></center>
+    <div class="section">
+      <div class="section-title">Contact Information</div>
+      <div class="section-content">
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <strong>Name:</strong>
+            <span id="name"></span>
+          </div>
+          <div class="contact-info-item">
+            <strong>Email:</strong>
+            <span id="email"></span>
+          </div>
+          <div class="contact-info-item">
+            <strong>Address:</strong>
+            <span id="address"></span>
+          </div>
+          <div class="contact-info-item">
+            <strong>Mobile:</strong>
+            <span id="mobile"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">Skills</div>
+      <div class="section-content">
+        <div class="skills">
+          <p id="skills"></p>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">Objective</div>
+      <div class="section-content">
+        <div class="objective">
+          <p id="objective"></p>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">Education</div>
+      <div class="section-content">
+        <h3>Primary Education</h3>
+        <ul>
+          <li><strong>School:</strong> <span id="primary_school"></span></li>
+          <li><strong>Address:</strong> <span id="primary_address"></span></li>
+          <li><strong>Year:</strong> <span id="primary_year"></span></li>
+        </ul>
+        <h3>Secondary Education</h3>
+        <ul>
+          <li><strong>School:</strong> <span id="secondary_school"></span></li>
+          <li><strong>Address:</strong> <span id="secondary_address"></span></li>
+          <li><strong>Year:</strong> <span id="secondary_year"></span></li>
+        </ul>
+        <h3>Tertiary Education</h3>
+        <ul>
+          <li><strong>School:</strong> <span id="tertiary_school"></span></li>
+          <li><strong>Address:</strong> <span id="tertiary_address"></span></li>
+          <li><strong>Year:</strong> <span id="tertiary_year"></span></li>
+          <li><strong>Degree:</strong> <span id="tertiary_degree"></span></li>
+        </ul>
+        <h3>Graduate Education</h3>
+        <ul>
+          <li><strong>School:</strong> <span id="graduate_school"></span></li>
+          <li><strong>Address:</strong> <span id="graduate_address"></span></li>
+          <li><strong>Year:</strong> <span id="graduate_year"></span></li>
+          <li><strong>Degree:</strong> <span id="graduate_degree"></span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">Experience</div>
+      <div class="section-content">
+        <div class="experience">
+          <p id="experience"></p>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">Achievements</div>
+      <div class="section-content">
+        <div class="achievements">
+          <p id="achievements"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <center><button id="pdf_btn" onclick="generatePDF()" style="width: 20vw;height: 5vh;">Convert to PDF</button></center>
+  <br>
+  <div class="footer_container" style="width: 99.1vw; height: 12vh; background-color: cornflowerblue; font-family: sans-serif; display: flex; flex-wrap: wrap">
+    <div id="logo2" style="width: fit-content; height: fit-content; margin-left: 12vw; margin-top: 3.4vh">
+        <img src="assets/Resumake_logo_black.png" style="width: 51.48px; height: 62.44px">
+    </div>
+    <div id="tagline2" style="width: fit-content; height: fit-content">
+        <h3 style="margin-left: 4.6vw; margin-top: unset; margin-bottom: unset; padding-top: 4.6vh">Resumake</h3>
+        <p style="margin-left: 1vw; margin-top: unset">Make resume now. Work tomorrow.</p>
+    </div>
+    <div id="copyright" style="width: fit-content; height: fit-content; margin-left: 50vw">
+        <p style="margin-top: 5vh; margin-bottom: unset; color: white">© 2023.</p>
+        <p style="margin-top: unset; color: white">All rights reserved.</p>
+    </div>
+</div>
+  <!-- <script>
+    function generatePDF() {
+      const doc = new jsPDF();
+      doc.html(document.getElementById('content'), {
+        callback: function (pdf) {
+          pdf.save('resume.pdf');
+        },
+      });
+    }
+  </script> -->
+
+  <script>
+  function generatePDF() {
+
+    html2canvas(document.getElementById('content')).then(function (canvas) {
+      const contentImg = canvas.toDataURL('image/png');
+
+      const doc = new jsPDF();
+
+      doc.addImage(contentImg, 'PNG', 10, 10, 190, 0);
+
+      doc.save('resume.pdf');
+    });
+  }
+  </script>
+
+</body>
+</html>
